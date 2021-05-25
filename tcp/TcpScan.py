@@ -34,19 +34,19 @@ def tcpScan(ip, ports, timeout=1):
     results = {port:None for port in ports}
 
     p = IP(dst=ip)/TCP(sport=ports,dport=ports, flags='S')
-    answers, un_answered = sr(p, timeout=timeout, verbose=0)
+    answers = sr(p, timeout=timeout, verbose=0)[0]
 
     for req, resp in answers:
         if not resp.haslayer(TCP):
             continue
-        tcp_layer = resp.getlayer(TCP)
+        tcpLayer = resp.getlayer(TCP)
 
-        if tcp_layer.flags == 0x12:
-            results[tcp_layer.sport] = True
+        if tcpLayer.flags == 0x12:
+            results[tcpLayer.sport] = True
 
-        elif tcp_layer.flags == 0x14:
-            results[tcp_layer.sport] = False
-            
+        elif tcpLayer.flags == 0x14:
+            results[tcpLayer.sport] = False
+
     print("======= Result for Tcp Scan of "+str(ip)+"=======")
     for k,v in results.items():
         if v != None:
