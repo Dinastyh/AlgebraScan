@@ -10,8 +10,7 @@ def threadPing(ipC):
         print(ipC)
 
 def icmpScan(ips):
-    print("==========Result==========")
-    print("Host up:")
+    print("==========Result for ICMP Scan==========")
 
     for i in ips:
         th = threading.Thread(target=threadPing, args=(i,))
