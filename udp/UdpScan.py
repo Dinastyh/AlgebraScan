@@ -33,7 +33,7 @@ def udpManager(args, ips):
 def udpScan(ip, ports, timeout=1):
     results = {port:None for port in ports}
     p = IP(dst=ip)/UDP(sport=ports, dport=ports)
-    answers, un_answered = sr(p, timeout=timeout, verbose=0)
+    answers= sr(p, timeout=timeout, verbose=0)[0]
 
     for req, resp in answers:
         if resp.haslayer(ICMP):

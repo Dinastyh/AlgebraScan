@@ -6,13 +6,17 @@ from udp.UdpScan import udpManager
 from netaddr import IPNetwork
 
 def main():
+    
+    if len(argv)<2 or not "." in argv[1]:
+        print("Bad Usage")
+        print("sudo python Main.py <ip> <modes> <args>")
+        return
     data = argv[1]
     ips=[]
     if "-" in data:
         dataSplit = data.split("-")
         ip1 = dataSplit[0].split(".")
         ip2= dataSplit[1].split(".")
-        #check enter
 
         if int(ip1[3]) > int(ip2[3]):
             ip1, ip2 = ip2, ip1
@@ -30,12 +34,13 @@ def main():
         arpScan(ips)
     elif argv[2] in ["-i", "--icmp"]:
         icmpScan(ips)
-    elif argv[2] in ["-t", "--tpc"]:
+    elif argv[2] in ["-t", "--tcp"]:
         tcpManager(argv[3:], ips)
     elif argv[2] in ["-u", "--udp"]:
         udpManager(argv[3:], ips)
-
-    print(ips)
+    else:
+        print("Mode not found")
+        print("Please choose one in: -a/--arp, -i/--icmp, -t/--tcp or -u/--udp")
 
 if __name__ == "__main__":
     main()
