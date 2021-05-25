@@ -1,6 +1,7 @@
 # AlgebraScan
 Second project of advanced scripting in Algebra University
 
+You must have scapy and netaddr
 
 Usage: 
 ```py 

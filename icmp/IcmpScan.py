@@ -1,5 +1,3 @@
-import socket
-import time
 import threading
 import subprocess
 data = []

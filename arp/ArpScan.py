@@ -1,6 +1,4 @@
 from scapy.all import ARP, Ether, srp
-import ipaddress
-
 
 def arpScan(ips):
     arp = ARP(pdst=ips)

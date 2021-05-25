@@ -1,5 +1,4 @@
 from scapy.all import IP, TCP, sr
-import socket
 
 def tcpManager(args, ips):
     if len(args) > 1:
@@ -36,7 +35,7 @@ def tcpScan(ip, ports, timeout=1):
     p = IP(dst=ip)/TCP(sport=ports,dport=ports, flags='S')
     answers = sr(p, timeout=timeout, verbose=0)[0]
 
-    for req, resp in answers:
+    for resp in answers[1]:
         if not resp.haslayer(TCP):
             continue
         tcpLayer = resp.getlayer(TCP)

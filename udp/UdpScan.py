@@ -35,7 +35,7 @@ def udpScan(ip, ports, timeout=1):
     p = IP(dst=ip)/UDP(sport=ports, dport=ports)
     answers= sr(p, timeout=timeout, verbose=0)[0]
 
-    for req, resp in answers:
+    for resp in answers[1]:
         if resp.haslayer(ICMP):
             results[resp.sport] = False
         elif resp.haslayer(UDP):
