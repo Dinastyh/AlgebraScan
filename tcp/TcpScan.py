@@ -2,8 +2,8 @@ from scapy.all import IP, TCP, sr
 import socket
 
 def tcpManager(args, ips):
-    if len(args) > 0:
-        data = args[0].split(",")
+    if len(args) > 1:
+        data = args[1].split(",")
         port = []
         for i in data:
             if "-" in i:
@@ -16,13 +16,13 @@ def tcpManager(args, ips):
                 else:
                     if int(iSplit[0]) > int(iSplit[1]):
                         iSplit[0], iSplit[1] = iSplit[1], iSplit[0]
-                    port += [i for i in range(int(iSplit[0]), int(iSplit[1]))]
+                    port += [i for i in range(int(iSplit[0]), int(iSplit[1])+1)]
             else:
-                port+= int(i)
+                port.append(int(i))
             port = list(set(port))
             port.sort()
     else:        
-        port=[i for i in range(0, 100)]
+        port=[i for i in range(0, 101)]
 
     for i in ips:
         tcpScan(i, port)
