@@ -21,7 +21,8 @@ Args For udp or tcp:
 
 <ul>
     <li>“-p x”–script needs to check port x.</li>
-    <li>“-p x,y”–script needs to check port x and y.•“-px,y,...”–script needs to check all ports separated with comas.</li>
+    <li>“-p x,y”–script needs to check port x and y.</li>
+    <li>“-px,y,...”–script needs to check all ports separated with comas.</li>
     <li>“-p x-y”–script needs to check all ports between x and y.</li>
     <li>“-p x-y,z” –script needs to support mixing ranges and exact ports.</li>
 </ul>
